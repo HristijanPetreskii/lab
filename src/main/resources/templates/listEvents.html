@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Event Booking page - Welcome and choose an Event</title>
+  <style type="text/css">
+    body {
+      width: 800px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Welcome to our Event Booking App</h1>
+</header>
+
+<!-- Search Form -->
+<form action="/" method="get">
+  <label for="searchText">Search by Name:</label>
+  <input type="text" id="searchText" name="searchText" placeholder="Enter event name" />
+
+  <label for="minRating">Minimum Rating:</label>
+  <input type="number" id="minRating" name="minRating" min="0" step="0.1" placeholder="Enter minimum rating" />
+
+  <button type="submit">Search</button>
+</form>
+
+<main>
+  <h2>Choose an event:</h2>
+
+  <!-- Display radio buttons for each event,
+       showing Name, Description, and Rating -->
+  <form action="/eventBooking" method="post">
+    <div>
+      <c:forEach var="event" items="${events}">
+        <label>
+          <input type="radio" name="selectedEvent" value="${event.name}" required />
+          Name: ${event.name}, Description: ${event.description}, Rating: ${event.popularityScore}
+        </label><br />
+      </c:forEach>
+    </div>
+
+    <h2>Choose number of tickets:</h2>
+    <input type="number" name="numTickets" min="1" max="10" required /><br />
+    <br />
+    <input type="submit" value="Submit">
+  </form>
+</main>
+</body>
+</html>
